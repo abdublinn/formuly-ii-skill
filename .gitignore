@@ -1,0 +1,13 @@
+# OS / editor junk
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+# рабочие файлы при прогоне скила
+места.md
+_копии до правки */

@@ -1,0 +1,3 @@
+# Markdown и Python: всегда LF в репозитории
+*.md text eol=lf
+*.py text eol=lf
