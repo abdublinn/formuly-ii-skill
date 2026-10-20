@@ -10,13 +10,41 @@
   python primenit.py правки.jsonl --write --koren рукопись/ --otchet было-стало.md
 
 Файлы читаются и пишутся байтами: переводы строк и кодировка UTF-8 сохраняются.
+
+Стилевая правка не должна менять факты. Поэтому скрипт отдельно выписывает правки,
+где изменились числа, цитаты «…» или ссылки на главы: их надо сверить глазами.
+Число вместо «почти» — законный случай, но и его стоит сверить с источником.
 """
 import argparse
 import datetime
 import json
+import re
 import shutil
 import sys
+from collections import Counter
 from pathlib import Path
+
+GLAVA = re.compile(r"(?i)\b(перв|втор|трет|четв[её]рт|пят|шест|седьм|восьм|девят|десят|одиннадцат|двенадцат|тринадцат|четырнадцат|пятнадцат)\w*\s+глав\w*|\bглав\w*\s+\d+")
+
+
+def invariants(s):
+    """Числа, цитаты и ссылки на главы во фрагменте."""
+    return {
+        "числа": Counter(re.findall(r"\d+(?:[.,]\d+)?", s)),
+        "цитаты": Counter(re.findall(r"«[^»]{3,}»", s)),
+        "главы": Counter(m.group(0).lower() for m in GLAVA.finditer(s)),
+    }
+
+
+def changed(find, replace):
+    a, b = invariants(find), invariants(replace)
+    out = []
+    for k in a:
+        if a[k] != b[k]:
+            gone = list((a[k] - b[k]).elements())
+            new = list((b[k] - a[k]).elements())
+            out.append(f"{k}: убрано {gone or '—'}, добавлено {new or '—'}")
+    return out
 
 
 def mn(n, one, few, many):
@@ -76,6 +104,11 @@ def main():
         sys.exit(1)
 
     print(f"Проверено: {mn(len(edits), 'правка', 'правки', 'правок')}, файлов: {len(data)}; каждая цитата найдена ровно один раз.")
+    facts = [(e["id"], c) for e in edits for c in [changed(e["find"], e["replace"])] if c]
+    if facts:
+        print(f"\nСверить с источником ({mn(len(facts), 'правка меняет', 'правки меняют', 'правок меняют')} числа, цитаты или ссылки на главы):")
+        for i, c in facts:
+            print(f"  {i}: " + "; ".join(c))
     if a.otchet:
         lines = ["# Было и стало\n"]
         for e in edits:
