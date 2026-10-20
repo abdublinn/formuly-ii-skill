@@ -82,6 +82,15 @@ SPLIT = re.compile(r"(?<=[.!?…])\s+(?=[«„\"(]?[А-ЯЁA-Z0-9])")
 WORD = re.compile(r"[А-Яа-яЁёA-Za-z0-9]+")
 
 
+def mn(n, one, few, many):
+    """Согласует слово с числом: 1 файл, 2 файла, 5 файлов."""
+    if n % 10 == 1 and n % 100 != 11:
+        return f"{n} {one}"
+    if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14:
+        return f"{n} {few}"
+    return f"{n} {many}"
+
+
 def mask_quotes(s):
     """Заменяет содержимое «…» и „…“ на «_», чтобы цитаты не считались."""
     out, depth = [], 0
@@ -243,11 +252,11 @@ def main():
         eres, _ = analyse(edocs)
         base = {k: v["на10тыс"] for k, v in eres["шаблоны"].items()}
         base.update({k: v[1] for k, v in eres["синтаксис"].items()})
-        base_name = f"эталон: {len(edocs)} файлов, {eres['слов']} слов"
+        base_name = f"эталон: {mn(len(edocs), 'файл', 'файла', 'файлов')}, {mn(eres['слов'], 'слово', 'слова', 'слов')}"
     elif not a.bez_etalona:
         base, base_name = DEFAULT, "встроенный ориентир (посты одного автора нон-фикшн, 54 тыс. слов, до ИИ); свой эталон точнее"
 
-    out = [f"# Счёт формул ИИ\n", f"Текст: {len(docs)} файлов, {res['слов']} слов, {res['фраз']} фраз."]
+    out = [f"# Счёт формул ИИ\n", f"Текст: {mn(len(docs), 'файл', 'файла', 'файлов')}, {mn(res['слов'], 'слово', 'слова', 'слов')}, {mn(res['фраз'], 'фраза', 'фразы', 'фраз')}."]
     if base_name:
         out.append(f"Сравнение: {base_name}.")
     if res["слов"] < 3000:
