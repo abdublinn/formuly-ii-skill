@@ -1,21 +1,38 @@
-MIT License
+Formuly-II — чистка русского текста от формул ИИ
+Copyright (c) 2026 Александр Борисович Дублин (Aleksandr Dublin), https://adublin.observer
 
-Copyright (c) 2026 abdublinn
+Этот скил — каталог, инструкции и скрипты — распространяется по лицензии
+Creative Commons «Attribution-NonCommercial 4.0 International» (CC BY-NC 4.0).
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Вы можете свободно использовать, копировать, переводить и перерабатывать
+материалы скила при соблюдении двух условий:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Указание авторства (BY). При любом использовании, упоминании или
+   переработке указывайте автора — Александра Борисовича Дублина — и давайте
+   ссылку на https://adublin.observer и на этот репозиторий.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. Некоммерческое использование (NC). Применение в коммерческих целях
+   (платные продукты и услуги, редактура за деньги, курсы, SaaS и т.п.) —
+   только по отдельной договорённости с автором.
+
+Полный текст лицензии: https://creativecommons.org/licenses/by-nc/4.0/legalcode.ru
+Краткое изложение: https://creativecommons.org/licenses/by-nc/4.0/deed.ru
+
+Части каталога адаптированы из материалов под MIT License — см.
+THIRD_PARTY_NOTICES.md; исходные условия этих частей сохраняются.
+
+Версии этого репозитория, опубликованные до 22.10.2026, распространялись
+под MIT License.
+
+---
+
+This work is licensed under the Creative Commons Attribution-NonCommercial
+4.0 International License (CC BY-NC 4.0).
+
+Attribution: Aleksandr Dublin, https://adublin.observer.
+Commercial use requires the author's permission.
+
+Full license: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+Portions adapted from MIT-licensed material — see THIRD_PARTY_NOTICES.md.
+Versions of this repository published before 2026-10-22 were distributed
+under the MIT License.
